@@ -1,0 +1,89 @@
+/* Reset all default browser margins and paddings */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  background-color: #0f172a; /* Dark theme background */
+  color: #f8fafc;
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* --- Responsive Layout Classes --- */
+.auth-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.auth-sidebar {
+  flex: 1;
+  background-color: #1e293b;
+  border-right: 1px solid #334155;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.layout-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.layout-sidebar {
+  width: 260px;
+  background-color: #1e293b;
+  border-right: 1px solid #334155;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Mobile Breakpoints */
+@media (max-width: 768px) {
+  .auth-wrapper, .layout-wrapper {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .auth-sidebar, .layout-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #334155;
+  }
+
+  .auth-sidebar {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .layout-wrapper {
+    overflow-y: auto;
+  }
+
+  .layout-sidebar {
+    height: auto;
+  }
+
+  .layout-sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .layout-sidebar nav a {
+    flex: 1;
+    text-align: center;
+    margin-bottom: 0 !important;
+  }
+}

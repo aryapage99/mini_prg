@@ -86,6 +86,11 @@ cap-docs-backend/chroma_db/
 scraper/chroma_db/
 
 # ------------------------------
+# Documentation files
+# ------------------------------
+**/*.md
+
+# ------------------------------
 # Temporary files
 # ------------------------------
 *.tmp
