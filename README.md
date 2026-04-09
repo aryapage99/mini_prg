@@ -1,2 +1,1 @@
-### Project Demo
-![rag_docs_demo](/demo.mp4)
+[![Project Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://youtu.be/BNlOkdmHAe8)
