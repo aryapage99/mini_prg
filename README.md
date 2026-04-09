@@ -1,2 +1,2 @@
 ### Project Demo
-![Classroom Management Demo](./demo.mp4)
+![rag_docs_demo](/demo.mp4)
