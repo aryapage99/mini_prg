@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { ChromaClient } = require('chromadb');
 const { generateAnswer } = require('../llmService');
-const pool = require('../db');
+const { saveQueryHistory } = require('../services/historyStoreService');
 
 const client = new ChromaClient({
     host: "localhost",
@@ -50,10 +50,11 @@ router.post('/ask', async (req, res) => {
         const aiResponse = await generateAnswer(fullPrompt);
 
         // 4. Save to PostgreSQL
-        await pool.query(
-            'INSERT INTO query_history (developer_id, query_text, result_output, was_summarized) VALUES ($1, $2, $3, $4)',
-            [developer_id, query, aiResponse, true]
-        );
+        await saveQueryHistory({
+            developerId: developer_id,
+            queryText: query,
+            resultOutput: aiResponse
+        });
 
         res.json({ answer: aiResponse });
 

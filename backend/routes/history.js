@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
+const { ensureHistorySchema } = require('../services/historyStoreService');
 
 // 1. Fetch all history for a specific developer
 router.get('/:developer_id', async (req, res) => {
     const { developer_id } = req.params;
     try {
+        await ensureHistorySchema();
         const result = await pool.query(
         'SELECT * FROM query_history WHERE developer_id = $1 ORDER BY query_id DESC',
         [developer_id]
@@ -21,6 +23,7 @@ router.get('/:developer_id', async (req, res) => {
 router.delete('/clear/:developer_id', async (req, res) => {
     const { developer_id } = req.params;
     try {
+        await ensureHistorySchema();
         await pool.query('DELETE FROM query_history WHERE developer_id = $1', [developer_id]);
         res.json({ message: "History cleared successfully" });
     } catch (err) {

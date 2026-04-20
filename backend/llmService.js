@@ -1,13 +1,15 @@
 const axios = require('axios');
 
 // Replace this with your MacBook's Ethernet IP address we tested earlier
-const MACBOOK_IP = "192.168.10.2"; 
-const OLLAMA_URL = `http://${MACBOOK_IP}:11434/api/generate`;
+const MACBOOK_IP = process.env.MACBOOK_IP || '192.168.10.2';
+const ANSWER_OLLAMA_BASE_URL = process.env.ANSWER_OLLAMA_BASE_URL || `http://${MACBOOK_IP}:11434`;
+const ANSWER_OLLAMA_MODEL = process.env.ANSWER_OLLAMA_MODEL || 'llama3.1';
+const OLLAMA_URL = `${ANSWER_OLLAMA_BASE_URL}/api/generate`;
 
 const generateAnswer = async (prompt) => {
     try {
         const response = await axios.post(OLLAMA_URL, {
-            model: "llama3.1",
+            model: ANSWER_OLLAMA_MODEL,
             prompt: prompt,
             stream: false
         });

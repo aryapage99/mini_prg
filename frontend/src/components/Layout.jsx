@@ -31,7 +31,8 @@ const Layout = ({ children }) => {
         <h2 style={{ color: '#3b82f6', marginBottom: '2.5rem', fontSize: '1.5rem', fontWeight: 'bold' }}>CAP Docs AI</h2>
         <nav style={{ flex: 1 }}>
           <Link to="/dashboard" style={navLinkStyle('/dashboard')}>🏠 Welcome</Link>
-          <Link to="/query" style={navLinkStyle('/query')}>🔍 Query & Search</Link>
+          <Link to="/query" style={navLinkStyle('/query')}>🔍 Query</Link>
+          <Link to="/research" style={navLinkStyle('/research')}>🌐 Web Research</Link>
           <Link to="/history" style={navLinkStyle('/history')}>⏱️ History</Link>
         </nav>
       </div>

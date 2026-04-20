@@ -6,7 +6,6 @@ import ReactMarkdown from 'react-markdown';
 
 const Query = () => {
   const [inputText, setInputText] = useState('');
-  const [action, setAction] = useState('query');
   const [result, setResult] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -27,7 +26,7 @@ const Query = () => {
       // Connect to your local Node.js backend
       const response = await axios.post('http://localhost:5000/api/query/ask', {
         query: inputText,
-        action: action, // Used for routing logic in the backend
+        action: 'query',
         developer_id: developer_id
       });
 
@@ -61,15 +60,6 @@ const Query = () => {
 
         <div style={{ backgroundColor: '#1e293b', padding: '2rem', borderRadius: '12px', border: '1px solid #334155', marginBottom: '2rem' }}>
           <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', marginBottom: '1rem', color: '#f8fafc', fontWeight: 'bold' }}>Select Action</label>
-              <div style={{ display: 'flex', gap: '2rem', color: '#cbd5e1' }}>
-                <label style={{ cursor: 'pointer' }}><input type="radio" value="query" checked={action === 'query'} onChange={(e) => setAction(e.target.value)} /> Query</label>
-                <label style={{ cursor: 'pointer' }}><input type="radio" value="scrape" checked={action === 'scrape'} onChange={(e) => setAction(e.target.value)} /> Scrape</label>
-                <label style={{ cursor: 'pointer' }}><input type="radio" value="summarize" checked={action === 'summarize'} onChange={(e) => setAction(e.target.value)} /> Summarize</label>
-              </div>
-            </div>
-
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', marginBottom: '0.5rem', color: '#f8fafc', fontWeight: 'bold' }}>Your Question</label>
               <textarea 
